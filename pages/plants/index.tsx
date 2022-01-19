@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import type { GetServerSideProps, NextPage } from "next";
-import { Alert, AlertTitle, CircularProgress } from "@mui/material";
+import { useRouter } from "next/router";
+import { Alert, AlertTitle, CircularProgress, Pagination } from "@mui/material";
 import { IPlant } from "../../types";
 import PlantDataService from "../../services/plant.service";
 import { ALERT_TEXT, ALERT_TITLE } from "../../constants";
@@ -13,17 +14,32 @@ type Props = {
 };
 
 const Index: NextPage<Props> = ({ plantsData, currentPage, totalPages }) => {
+  const router = useRouter();
   const [plants, setPlants] = useState<IPlant[]>([]);
   const plantsDataRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(currentPage);
 
   useEffect(() => {
     if (plantsData) {
       setPlants(plantsData);
     }
-
+    setPage(parseInt(router.query.page ? (router.query.page as string) : "1"));
     setLoading(false);
-  }, [plantsData]);
+  }, [plantsData, router.query.page]);
+
+  const handlePagination = (e: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+    const query = router.query;
+    query.page = value.toString();
+    router.push({
+      pathname: router.pathname,
+      query: query,
+    });
+    if (null !== plantsDataRef.current) {
+      plantsDataRef.current.scrollIntoView();
+    }
+  };
 
   return (
     <>
@@ -47,6 +63,13 @@ const Index: NextPage<Props> = ({ plantsData, currentPage, totalPages }) => {
                     <PlantGridCell plant={plant} key={plant.id} />
                   ))}
                 </div>
+                <Pagination
+                  count={totalPages}
+                  color="primary"
+                  onChange={handlePagination}
+                  page={page}
+                  className="flex justify-center items-center mt-8"
+                />
               </div>
             ) : (
               <Alert severity="error" variant="outlined">
