@@ -1,3 +1,4 @@
+import { MarkdownPreview } from "../libs/markdown";
 import { IPlant } from "../types";
 import Image from "next/image";
 import imageLoader from "../utils/imageLoader";
@@ -46,9 +47,13 @@ const PlantDetail: React.FC<Props> = ({ plant }) => {
               Watering Instructions
             </p>
             <div className="xl:pr-48 text-base lg:leading-tight leading-normal text-black-300 mt-2">
-              {plant.watering_instructions
-                ? plant.watering_instructions
-                : PLANT_WATERING_INSTRUCTION}
+              <MarkdownPreview
+                source={
+                  plant.watering_instructions
+                    ? plant.watering_instructions
+                    : PLANT_WATERING_INSTRUCTION
+                }
+              />
             </div>
           </div>
         </div>
