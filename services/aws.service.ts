@@ -1,16 +1,15 @@
-import AWS from "aws-sdk";
+import { S3, S3_BUCKET } from "../libs/aws";
+import { IAddPlantFormInput } from "../types";
 
-const S3_BUCKET = process.env.NEXT_PUBLIC_AWS_BUCKET || "growthops";
-const REGION = process.env.NEXT_PUBLIC_AWS_DEFAULT_REGION || "ap-southeast-2";
+class AWSService {
+  uploadToS3(data: IAddPlantFormInput) {
+    return S3.upload({
+      ACL: "public-read",
+      Body: data?.photo[0],
+      Bucket: S3_BUCKET,
+      Key: data?.photo[0]?.name,
+    }).promise();
+  }
+}
 
-AWS.config.update({
-  accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
-});
-
-const S3 = new AWS.S3({
-  params: { Bucket: S3_BUCKET },
-  region: REGION,
-});
-
-export { S3, REGION, S3_BUCKET };
+export default new AWSService();
