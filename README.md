@@ -1,8 +1,39 @@
+## Plant tracker frontend
+
+This repository contains frontend for plant tracker app.
+
+## Prerequisites
+
+- [Node](https://nodejs.org/en/) version >=15.0.0 installed
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Environment variables
 
-First, run the development server:
+Add .env.local file in root folder with following values
+
+```
+NEXT_PUBLIC_APP_NAME="Plants Tracker"
+NEXT_PUBLIC_API_URL="http://backend.growthops.localdomain/api"
+NEXT_PUBLIC_AWS_DEFAULT_REGION="<<AWS_DEFAULT_REGION>>"
+NEXT_PUBLIC_AWS_BUCKET="<<AWS_BUCKET>>"
+NEXT_PUBLIC_AWS_ACCESS_KEY_ID="<<AWS_ACCESS_KEY_ID>>"
+NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY="<<AWS_SECRET_ACCESS_KEY>>"
+NEXT_PUBLIC_AWS_BUCKET_URL="<<AWS_BUCKET_URL>>"
+NEXT_PUBLIC_AWS_BUCKET_URL_WITH_HTTPS="<<AWS_BUCKET_URL_WITH_HTTPS>>"
+```
+
+## How to run
+
+For prod build:
+
+```bash
+npm run build
+# or
+npm start
+```
+
+For dev build:
 
 ```bash
 npm run dev
@@ -12,23 +43,25 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Next.js relevant best practices
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Server-side Rendering - data fetching with getServerSideProps
+- Next/router
+- Next/link
+- Next/image
+- Next/head
+- TypeScript
+- Folder structure
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Libraries used
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- tailwindcss
+- @mui/material
+- @uiw/react-md-editor
+- aws-sdk
+- react-hook-form
+- @hookform/resolvers
+- yup
+- axios
+- next
+- typescript
