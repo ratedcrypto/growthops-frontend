@@ -27,6 +27,7 @@ const Footer: React.FC = () => {
           <a
             className="ml-3"
             target="_blank"
+            rel="noreferrer"
             href="https://www.linkedin.com/in/rujul-trivedi-53307049/"
           >
             <svg
