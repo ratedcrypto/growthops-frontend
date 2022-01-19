@@ -42,7 +42,7 @@ const Add: NextPage = () => {
         name: data.name,
         species: data.species,
         watering_instructions: wateringInstructions,
-        photo: null
+        photo: s3Response
           ? s3Response.Location
           : `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL_WITH_HTTPS}/plant-placeholder.jpeg`,
       });
