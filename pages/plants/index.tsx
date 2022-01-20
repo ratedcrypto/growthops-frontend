@@ -84,12 +84,20 @@ export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const currentPage = context.query?.page || "1";
-    const result = await PlantDataService.getAll({ page: currentPage });
+    const currentPage = context.params?.page || "1";
+    const result = await PlantDataService.getAll({
+      page: currentPage.toString(),
+    });
     if (result.status === 200) {
       const plantsData = result.data.data.data || [];
       const totalPages = result.data.data.last_page || 0;
-      return { props: { plantsData, currentPage, totalPages } };
+      return {
+        props: {
+          plantsData,
+          currentPage,
+          totalPages,
+        },
+      };
     }
   } catch (err) {
     console.log(err);

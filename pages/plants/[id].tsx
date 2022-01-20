@@ -45,21 +45,25 @@ export default Plant;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const id = context.query.id as string;
-    const result = await PlantDataService.get({ id });
+    const id = context.params?.id || "";
+    const result = await PlantDataService.get({ id: id.toString() });
     if (result.status === 200) {
       const plantData = result.data.data;
-      if (Array.isArray(plantData) && plantData.length === 0) {
-        return { props: { plantData: null } };
+      if (typeof plantData === "object") {
+        return {
+          props: {
+            plantData,
+          },
+        };
       }
-
-      return { props: { plantData } };
     }
   } catch (err) {
     console.log(err);
   }
 
   return {
-    props: { plantData: null },
+    props: {
+      plantData: null,
+    },
   };
 };
