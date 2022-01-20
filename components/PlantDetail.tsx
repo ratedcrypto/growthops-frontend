@@ -17,7 +17,7 @@ const PlantDetail: React.FC<Props> = ({ plant }) => {
   return (
     <>
       <h2 className="text-2xl font-bold leading-5 text-gray-900 sm:text-3xl sm:truncate">
-        Plant Details
+        Plant Details {plant.id}
       </h2>
       <div className="md:flex py-10">
         <div className="xl:w-2/6 lg:w-2/5 w-80 md:block">

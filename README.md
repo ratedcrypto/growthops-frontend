@@ -4,7 +4,7 @@ This repository contains frontend for plant tracker app.
 
 ## Prerequisites
 
-- [Node](https://nodejs.org/en/) version >=15.0.0 installed
+- [Node](https://nodejs.org/en/) version 16.0.0 installed
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -50,8 +50,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Next/link
 - Next/image
 - Next/head
+- Next/error
 - TypeScript
 - Folder structure
+- Responsive design
 
 ## Libraries used
 
