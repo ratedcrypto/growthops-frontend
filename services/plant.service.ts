@@ -1,7 +1,7 @@
 import axios from "../libs/axios";
 
 class PlantDataService {
-  getAll(params: { page: string | string[] }) {
+  getAll(params: { page: string }) {
     return axios.get("/v1/plants", { params });
   }
 
